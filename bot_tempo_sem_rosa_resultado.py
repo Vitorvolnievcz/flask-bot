@@ -5,8 +5,8 @@ from datetime import datetime, timedelta
 from collections import defaultdict
 
 # Constantes
-ARQUIVO_ENTRADA = "data/sem_vela_rosa.json"
-ARQUIVO_SAIDA = "data/sem_vela_rosa_resultado.json"
+ARQUIVO_ENTRADA = "sem_vela_rosa.json"
+ARQUIVO_SAIDA = "sem_vela_rosa_resultado.json"
 TOKEN = "7026461077:AAEfwA-3I706oywyYn4rvOQQzlqlxMzzlOs"
 CHAT_ID = "-1002688788017"
 URL = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
@@ -52,6 +52,12 @@ while True:
                     velas_100x.append((dt, v))
             except:
                 continue
+
+
+        if not velas_rosa:
+            print("[ERRO] Nenhuma vela rosa encontrada no JSON.")
+            time.sleep(3)
+            continue
 
         # Últimas velas
         ultima_rosa_dt, ultima_rosa_v = velas_rosa[-1]
